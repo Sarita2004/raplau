@@ -1,0 +1,155 @@
+/* Estilo global */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Títulos principales */
+h1, h2, h3 {
+    color: #0e7929;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Botones */
+.btn-primary {
+    background: linear-gradient(135deg, #0e7929,#0e7929);
+    border: none;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0e7929, #0e7929);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Formularios */
+form {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input, select, textarea {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #086820;
+    box-shadow: 0 0 5px rgba(13, 253, 105, 0.5);
+    outline: none;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table thead {
+    background: #0e7929;
+    color: #fff;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table tbody tr:nth-child(even) {
+    background: #f4f4f4;
+}
+
+table tbody tr:hover {
+    background: #eef2f7;
+    cursor: pointer;
+}
+
+/* Navegación */
+.navbar {
+    background: linear-gradient(135deg,  #0e7929, #0e7929);
+    border-bottom: 2px solid #0e7929;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.navbar-brand:hover, .navbar-nav .nav-link:hover {
+    color: #f8f9fa !important;
+}
+
+/* Animaciones */
+button, input, select {
+    transition: transform 0.2s;
+}
+
+button:hover, input:focus {
+    transform: scale(1.02);
+}
+
+/* Footer */
+footer {
+    background: #0b6b23;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 3px solid #0e7929;
+}
+
+footer a {
+    color: #f8f9fa;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ddd;
+}
+
+/* Clases adicionales */
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-title {
+    color: #0e7929;
+}
+
+.alert {
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.low-stock { /* Menor a 50 unidades */
+    background-color: #f8d7da;
+    color: #721c24;
+}
