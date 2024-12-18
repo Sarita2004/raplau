@@ -124,6 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if (isset($error)) echo "<p class='message error'>$error</p>"; ?>
         <br></br>
         <a href="mau.php" class="back-button">Volver al Inicio</a>
+        <a href="sucursal.php" class="back-button">Editar sucursales</a>
     </div>
 </body>
 </html>

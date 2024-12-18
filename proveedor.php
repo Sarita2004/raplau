@@ -1,6 +1,7 @@
 <?php
 require 'db.php';
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];
     $direccion = $_POST['direccion'];
@@ -125,7 +126,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if (isset($error)) echo "<p class='message error'>$error</p>"; ?>
         <br></br>
 
-        <a href="index.php" class="back-button">Volver al Inicio</a>
+        <a href="mau.php" class="back-button">Volver al Inicio</a>
+        <a href="proveedores.php" class="back-button">Editar proveedor</a>
+
     </div>
     
 </body>

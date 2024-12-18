@@ -5,13 +5,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];
     $categoria = $_POST['categoria'];
     $presentacion = $_POST['presentacion'];
+    $stock_minimo = $_POST['stock_minimo'];
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO bebidas (nombre, id_categoria, id_presentacion) VALUES (:nombre, :categoria, :presentacion)");
+        $stmt = $pdo->prepare("INSERT INTO bebidas (nombre, id_categoria, id_presentacion, stock_minimo) VALUES (:nombre, :categoria, :presentacion, :stock_minimo)");
         $stmt->execute([
             ':nombre' => $nombre,
             ':categoria' => $categoria,
-            ':presentacion' => $presentacion
+            ':presentacion' => $presentacion,
+            ':stock_minimo' => $stock_minimo
         ]);
         $success = "Bebida agregada exitosamente.";
     } catch (PDOException $e) {
@@ -61,13 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             gap: 15px;
         }
 
-        .form-container input[type="text"] {
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
+        .form-container input[type="text"],
+        .form-container input[type="number"],
         .form-container select {
             padding: 10px;
             font-size: 1rem;
@@ -128,10 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 ?>
             </select>
-                        </select>
 
             <!-- Selección de Presentación -->
-            <label for="bebida">Presentacion:</label>
+            <label for="presentacion">Presentación:</label>
             <select name="presentacion" required>
                 <option value="" disabled selected>Selecciona una presentación</option>
                 <?php
@@ -142,7 +138,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ?>
             </select>
 
-            
+            <!-- Stock Mínimo -->
+            <label for="stock_minimo">Stock Mínimo:</label>
+            <input type="number" name="stock_minimo" placeholder="Stock mínimo" min="0" required>
+
             <button type="submit">Agregar Bebida</button>
         </form>
         
@@ -150,6 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if (isset($error)) echo "<p class='message error'>$error</p>"; ?>
         
         <a href="mau.php" class="back-button">Volver al Inicio</a>
+        <a href="bebidas.php" class="back-button">Editar bebidas</a>
     </div>
 </body>
 </html>

@@ -63,7 +63,7 @@
         </div>
         <div class="navbar-right">
             <a href="ver_stock.php">Ver Stock</a>
-            <a href="exits.php">Envíos</a>
+            <a href="stock_management.php">Envíos</a>
             <a href="entries.php">Ingresos</a>
         </div>
     </nav>

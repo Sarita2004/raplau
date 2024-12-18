@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Redirigiendo...";
 
         // Redirigir a entries.php para mostrar el stock actualizado
-        header('Location: exits.php');
+        header('Location: stock_management.php');
         exit; // Importante para detener la ejecución después de la redirección
     } catch (Exception $e) {
         $error = "Error al procesar el envío: " . $e->getMessage();

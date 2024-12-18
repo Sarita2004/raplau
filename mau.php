@@ -84,7 +84,7 @@
             </a>
 
             <!-- Tarjeta para Envíos -->
-            <a href="exits.php" class="card">
+            <a href="stock_management.php" class="card">
                 <h3>Envíos</h3>
                 <p>Gestiona los envíos realizados a las sucursales.</p>
             </a>

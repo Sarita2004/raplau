@@ -11,12 +11,12 @@ include 'navbar.php';
     <link rel="stylesheet" href="estilos.css">
     <title>Gestión de Stock</title>
     <style>
-                .low-stock { /* Menor a 50 unidades */
-            background-color:rgb(235, 59, 59);
-            color: #721c24;
+                table tr.low-stock td {
+            color: #b30000; /* Texto rojo oscuro */
+            font-weight: bold;
         }
-        .warning-stock { /* Entre 50 y 99 unidades */
-            background-color:rgb(235, 59, 59);
+        .low-stock { /* Menor al stock mínimo */
+            background-color: rgb(230, 214, 214);
             color: #721c24;
         }
     </style>
@@ -30,41 +30,43 @@ include 'navbar.php';
                     <th>Nombre</th>
                     <th>Presentación</th>
                     <th>Cantidad</th>
+                    <th>Stock Mínimo</th>
                     <th>Última Actualización</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                // Obtener el stock disponible de las bebidas con sus presentaciones
+                // Obtener el stock disponible y el stock mínimo de cada bebida
                 $stmt = $pdo->query('
                     SELECT 
                         b.nombre, 
                         p.descripcion AS presentacion, 
-                        SUM(pb.cantidad) AS cantidad, 
+                        COALESCE(SUM(pb.cantidad), 0) - COALESCE((
+                            SELECT SUM(sb.cantidad) 
+                            FROM sucursal_bebidas sb 
+                            WHERE sb.id_bebida = b.id_bebida
+                        ), 0) AS cantidad,
+                        b.stock_minimo,
                         MAX(pb.fecha_ingreso) AS fecha_ingreso
                     FROM bebidas b
                     INNER JOIN proveedores_bebidas pb ON b.id_bebida = pb.id_bebida
                     INNER JOIN presentaciones p ON b.id_presentacion = p.id_presentacion
-                    GROUP BY b.nombre, p.descripcion
+                    GROUP BY b.id_bebida, b.nombre, p.descripcion, b.stock_minimo
                 ');
 
                 while ($row = $stmt->fetch()) {
-                    // Lógica para asignar clase según la cantidad
-                    if ($row['cantidad'] < 50) {
-                        $class = 'low-stock';
-                    } elseif ($row['cantidad'] < 100) {
-                        $class = 'warning-stock';
-                    } else {
-                        $class = '';
-                    }
+                    // Asignar clase según el stock actual comparado con el stock mínimo
+                    $class = $row['cantidad'] < $row['stock_minimo'] ? 'low-stock' : '';
 
                     echo "<tr class='$class'>
                         <td>{$row['nombre']}</td>
                         <td>{$row['presentacion']}</td>
                         <td>{$row['cantidad']}</td>
+                        <td>{$row['stock_minimo']}</td>
                         <td>{$row['fecha_ingreso']}</td>
                     </tr>";
-                }?>
+                }
+                ?>
             </tbody>
         </table>
 
@@ -117,4 +119,3 @@ include 'navbar.php';
     </div>
 </body>
 </html>
-
